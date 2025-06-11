@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { UserInputComponent } from "./user-input/user-input.component";
 import { InvestmentResultsComponent } from "./investment-results/investment-results.component";
-
+import { InvestmentService } from './investment.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, UserInputComponent, InvestmentResultsComponent],
@@ -12,37 +12,50 @@ import { InvestmentResultsComponent } from "./investment-results/investment-resu
 })
 export class AppComponent {
   title = 'investment_calculator';
-  resultsData!: {
-    year: number;
-    interest: number;
-    valueEndOfYear: number;
-    annualInvestment: number;
-    totalInterest: number;
-    totalAmountInvested: number;
-  }[];
 
-  calculateInvestmentResults(data:{initialInvestment: number, duration: number, expectedReturn: number, annualInvestment: number}) {
+  //   resultsData!: {
+  //       year: number;
+  //       interest: number;
+  //       valueEndOfYear: number;
+  //       annualInvestment: number;
+  //       totalInterest: number;
+  //       totalAmountInvested: number;
+  //   }[];
 
-    const annualData = [];
-    let investmentValue = data.initialInvestment;
+  //using signal to define resultsData
+    // resultsData = signal<{
+    //   year: number;
+    //   interest: number;
+    //   valueEndOfYear: number;
+    //   annualInvestment: number;
+    //   totalInterest: number;
+    //   totalAmountInvested: number;
+    // }[] | undefined>(undefined);
 
-    for (let i = 0; i < data.duration; i++) {
-      const year = i + 1;
-      const interestEarnedInYear = investmentValue * (data.expectedReturn / 100);
-      investmentValue += interestEarnedInYear + data.annualInvestment;
-      const totalInterest =
-        investmentValue - data.annualInvestment * year - data.initialInvestment;
-      annualData.push({
-        year: year,
-        interest: interestEarnedInYear,
-        valueEndOfYear: investmentValue,
-        annualInvestment: data.annualInvestment,
-        totalInterest: totalInterest,
-        totalAmountInvested: data.initialInvestment + data.annualInvestment * year,
-      });
-    }
+  //   calculateInvestmentResults(data:{initialInvestment: number, duration: number, expectedReturn: number, annualInvestment: number}) {
 
-    this.resultsData=annualData;
-  }
+  //   const annualData = [];
+  //   let investmentValue = data.initialInvestment;
+
+  //   for (let i = 0; i < data.duration; i++) {
+  //     const year = i + 1;
+  //     const interestEarnedInYear = investmentValue * (data.expectedReturn / 100);
+  //     investmentValue += interestEarnedInYear + data.annualInvestment;
+  //     const totalInterest = investmentValue - data.annualInvestment * year - data.initialInvestment;
+  //     annualData.push({
+  //       year: year,
+  //       interest: interestEarnedInYear,
+  //       valueEndOfYear: investmentValue,
+  //       annualInvestment: data.annualInvestment,
+  //       totalInterest: totalInterest,
+  //       totalAmountInvested: data.initialInvestment + data.annualInvestment * year,
+  //     });
+  //   }
+
+  //   this.resultsData=annualData;
+  // }
+
+  //THE ABOVE CODE IS MOVED TO THE SEVICES 
+  
 
 }

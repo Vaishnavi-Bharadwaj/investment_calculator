@@ -1,4 +1,5 @@
-@if(!results)
+<!-- for input function or getters use () -->
+@if(!results()) 
 {
     <p class="center">Please enter some values and press "Calculate"</p>
 }
@@ -15,7 +16,10 @@
         </thead>
 
         <tbody>
-            @for(res of results; track res.year)
+            <!-- @for(res of results; track res.year) -->
+
+            <!--using input function needs () for results-->
+            @for(res of results(); track res.year)  
             {
                 <tr>
                     <td>{{res.year}}</td>

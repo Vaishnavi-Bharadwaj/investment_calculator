@@ -1,4 +1,9 @@
 <app-header></app-header>
-<app-user-input (calculate)="calculateInvestmentResults($event)"></app-user-input>
-<app-investment-results [results]="resultsData"></app-investment-results>
+<!-- <app-user-input (calculate)="calculateInvestmentResults($event)"></app-user-input> -->
+<!-- <app-investment-results [results]="resultsData"></app-investment-results> -->
+<!-- <app-investment-results [results]="resultsData()"></app-investment-results> --> <!--using signals-->
+
+<!--using services-->
+<app-user-input></app-user-input>
+<app-investment-results></app-investment-results>
 <router-outlet />
